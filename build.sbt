@@ -1,6 +1,3 @@
-import com.typesafe.sbt.SbtGhPages.ghpages
-import com.typesafe.sbt.SbtGit._
-import com.typesafe.sbt.SbtSite.site
 import sbt.ScriptedPlugin._
 
 versionWithGit
@@ -46,20 +43,13 @@ lazy val plugin =
 
 // Website settings
 
-site.settings
-
-ghpages.settings
-
-site.jekyllSupport()
-
-site.includeScaladoc()
-
+enablePlugins(GhpagesPlugin, JekyllPlugin, SiteScaladocPlugin)
 
 git.remoteRepo := "git@github.com:sbt/sbt-pgp.git"
 
-site.addMappingsToSiteDir(mappings in packageDoc in Compile in library, "library/latest/api")
+siteSubdirName in SiteScaladoc in library := "library/latest/api"
 
-site.addMappingsToSiteDir(mappings in packageDoc in Compile in plugin, "plugin/latest/api")
+siteSubdirName in SiteScaladoc in plugin := "plugin/latest/api"
 
 // Release settings
 Release.settings
