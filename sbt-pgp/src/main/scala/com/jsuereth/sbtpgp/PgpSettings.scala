@@ -142,16 +142,18 @@ object PgpSettings {
       val r = pgpSigner.value
       val skipZ = (pgpSigner / skip).value
       val s = streams.value
+      val converter = fileConverter.value
       if (!skipZ) {
         artifacts flatMap {
-          case (art, file) =>
+          case (art, virtualFile) =>
+            val file = converter.toPath(virtualFile).toFile
             Seq(
               art -> file,
               subExtension(art, art.extension + gpgExtension) -> r
                 .sign(file, new File(file.getAbsolutePath + gpgExtension), s)
             )
         }
-      } else artifacts
+      } else artifacts.view.mapValues(converter.toPath(_).toFile).toMap
     },
     pgpMakeIvy := (Def.taskDyn {
       val style = publishMavenStyle.value

@@ -45,15 +45,7 @@ jobs:
     - name: Setup key
       shell: bash
       run: gpg --import test-key.gpg
-    - name: Build and test
-      if: ${{ matrix.jobtype == 1 }}
-      shell: bash
-      run: sbt -v clean +test +scripted
-    - name: Scalafmt
-      if: ${{ matrix.jobtype == 2 }}
-      shell: bash
-      run: sbt -v clean scalafmtSbtCheck +scalafmtCheckAll
     - name: Scala 3
       if: ${{ matrix.jobtype == 3 }}
       shell: bash
-      run: sbt -v '++ 3.3.4!' library/test
+      run: sbt -v '++ 3.3.4!' library/test scripted

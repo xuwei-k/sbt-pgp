@@ -17,7 +17,7 @@ ThisBuild / scalafmtOnCompile := true
 ThisBuild / dynverSonatypeSnapshots := true
 ThisBuild / version := {
   val orig = (ThisBuild / version).value
-  if (orig.endsWith("-SNAPSHOT")) "2.0.2-SNAPSHOT"
+  if (orig.endsWith("-SNAPSHOT")) "2.2.2-SNAPSHOT"
   else orig
 }
 

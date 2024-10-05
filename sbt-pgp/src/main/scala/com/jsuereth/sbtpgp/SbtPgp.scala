@@ -1,7 +1,8 @@
 package com.jsuereth.sbtpgp
 
-import sbt._
+import sbt.{ *, given }
 import sbt.sbtpgp.Compat._
+import scala.language.implicitConversions
 
 /**
  * This class is used to control what we expose to

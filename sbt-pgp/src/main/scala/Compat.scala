@@ -10,7 +10,7 @@ object Compat {
   type IvySbt = ilm.IvySbt
   type IvyScala = lm.ScalaModuleInfo
   type UpdateConfiguration = lm.UpdateConfiguration
-  val defaultProgress = EvaluateTask.defaultProgress
+  val defaultProgress = EvaluateTask.defaultProgress()
   type UnresolvedWarning = lm.UnresolvedWarning
   type UnresolvedWarningConfiguration = lm.UnresolvedWarningConfiguration
   val UnresolvedWarningConfiguration = lm.UnresolvedWarningConfiguration
