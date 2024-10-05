@@ -42,6 +42,13 @@ lazy val plugin = (project in file("sbt-pgp"))
   .settings(
     name := "sbt-pgp",
     libraryDependencies += gigahorseOkhttp.value,
+    mimaPreviousArtifacts := Set(
+      Defaults.sbtPluginExtra(
+        organization.value % name.value % "2.2.1",
+        sbtBinaryVersion.value,
+        scalaBinaryVersion.value
+      )
+    ),
     publishLocal := publishLocal.dependsOn((library / publishLocal)).value,
     scriptedBufferLog := false,
     scriptedLaunchOpts += s"-Dproject.version=${version.value}",
@@ -59,6 +66,7 @@ lazy val plugin = (project in file("sbt-pgp"))
 lazy val library = (project in file("gpg-library"))
   .settings(
     name := "pgp-library",
+    mimaPreviousArtifacts := Set(organization.value %% name.value % "2.2.1"),
     libraryDependencies ++= Seq(bouncyCastlePgp, gigahorseOkhttp.value, specs2 % Test, sbtIo % Test),
     libraryDependencies ++= Seq(parserCombinators.value)
   )
